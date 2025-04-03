@@ -1,0 +1,42 @@
+-- Users Table 
+'''feilds are id(serial), name(text), email(text), clubs(text list), about(text), score(int), is_admin(bool), created_at(timestamp)'''
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  major TEXT NOT NULL,
+  clubs TEXT[] NOT NULL,
+  about TEXT NOT NULL,
+  score INTEGER DEFAULT 0,
+  is_admin BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Events Table
+'''feilds are id(serial), title(text), description(text), event_date(timestamp), created_at'''
+CREATE TABLE events (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  description TEXT,
+  event_date TIMESTAMP WITH TIME ZONE NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Participations Table
+'''feilds are id(serial), user_id(table Users), event_it(table Events), points awarded(int), participated_at(timestamp)'''
+CREATE TABLE participations (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  event_id INTEGER REFERENCES events(id),
+  points INTEGER DEFAULT 0,
+  participated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- qr-codes Table
+'''feilds are id(serial), event_it(table Events), unique_code(text), created_at(timestamp)'''
+CREATE TABLE qr_codes (
+  id SERIAL PRIMARY KEY,
+  event_id INTEGER REFERENCES events(id),
+  unique_code TEXT UNIQUE NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

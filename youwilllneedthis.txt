@@ -1,0 +1,3 @@
+git config http.postBuffer 524288000
+// for generating jwt secret key run this command
+node -e "console.log(require('crypto'). randomBytes(32).toString('hex'))"

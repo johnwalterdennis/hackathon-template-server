@@ -1,6 +1,7 @@
 //Auth powered by Json Web Token
 // JWT-based authentication middleware that verifies the token in req header and attaches user(or other) info to req.user
 const jwt = require("jsonwebtoken");
+
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) return res.status(401).json({ error: "No token provided" });

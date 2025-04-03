@@ -16,7 +16,7 @@ app.listen(port, () => {
 });
 
 //Import Routes
-const myControllerRoute = require("./routes/myControllerRoute");
+const myControllerRoute = require("./routes/someFunctionRoute");
 
 //Mount Routes
 app.use("api/myController", myControllerRoute);

@@ -1,7 +1,17 @@
 const jwt = require("jsonwebtoken");
 const supabase = require("../services/supabaseClient.js");
 
-exports.someFunction = async (req, res, next) => {};
+// exports.someFunction = async (req, res, next) => {
+//   res.json({ event: data[0] });
+// };
+
+exports.getSomething = async (req, res) => {
+  const { data, error } = await supabase.from("test").select("*");
+  if (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  res.json({ events: data });
+};
 
 //example functions
 
